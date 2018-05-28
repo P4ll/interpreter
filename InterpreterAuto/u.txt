@@ -1,4 +1,4 @@
-﻿a1a-2a-3a4x15;
-a-1a2a-3a-4x15x11x-13x-1x-10 V a-1a2a-3a-4x15x-11 V a-1a2a-3a4x8x7 V a-1a2a3a-41;
-a-1a-2a3a-4x-10x-12 V a-1a-2a3a-4x10x-11 V a-1a-2a3a-4x10x11 V a-1a-2a3a-4x-10x12x13 V a-1a-2a3a-4x-10x12x-13x-1 V a-1a-2a3a4x14 V a-1a2a3a-41;
-a-1a-2a-3a4x9 V a-1a-2a3a4x14 V a-1a2a-3a4x8x-7 V a-1a2a3a4x9 V a1a-2a-3a4x15;
+a1a-2a-3a4x15 ;
+a-1a2a-3a-4x15x11x-13x-1x-10 V a-1a2a-3a-4x15x-11 V a-1a2a-3a4x8x7 V a-1a2a3a-41 ;
+a-1a-2a3a-4x-10x-12 V a-1a-2a3a-4x10x-11 V a-1a-2a3a-4x10x11 V a-1a-2a3a-4x-10x12x13 V a-1a-2a3a-4x-10x12x-13x-1 V a-1a-2a3a4x14 V a-1a2a3a-41 ;
+a-1a-2a-3a4x9 V a-1a-2a3a4x14 V a-1a2a-3a4x8x-7 V a-1a2a3a4x9 V a1a-2a-3a4x15 ;
