@@ -23,9 +23,23 @@ bool ExpPart::isAnySymbol()
 
 MultiExpression::MultiExpression(std::string str)
 {
-	for (int i = 0; i < str.size(); ++i) {
+	for (int i = 0; i < str.size(); ) {
 		ExpPart t;
-
+		if (isalpha(str[i])) {
+			t.letter = str[i];
+			++i;
+		}
+		if (str[i] == '-') {
+			t.isNegative = true;
+			++i;
+		}
+		std::string dig = "";
+		while (isdigit(str[i])) {
+			dig += str[i];
+			++i;
+		}
+		t.number = atoi(dig.c_str());
+		expression.push_back(t);
 	}
 }
 

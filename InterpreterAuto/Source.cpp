@@ -10,32 +10,17 @@
 
 using namespace std;
 
-//vector<string> rebuildString(string str);
+vector<MultiExpression> &getData(string fileName) {
+	ifstream input(fileName);
 
-class Trigger {
-	int mod;
-	int number;
-	char *matrix;
-public:
-	Trigger(int n, int m, int mod, int number, char *mat) {
-		
-	}
-};
-
-string getU() {
-	//freopen("w.txt", "r", stdin);
-	string a;
-	cin >> a;
-	int b = 10;
-	return a;
+	input.close();
 }
 
 int main() {
-
+	//ios::sync_with_stdio(0);
+	ifstream input("input.txt");
+	string a;
+	input >> a;
+	input.close();
 	return 0;
 }
-/*
-vector<string> rebuildString(string str) {
-	return;
-}
-*/

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <ctype.h>
 
 class ExpPart {
 public:
