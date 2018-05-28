@@ -3,8 +3,8 @@ a-1a-2a-3a-4x-1x2x-3x-4x-5 V a-1a-2a-3a-4x-1x-2x-3x-4x-5 V a-1a-2a-3a-4x1x12x-13
 a-1a-2a-3a-4x-1x2x-3x-4x-5 V a-1a-2a-3a-4x-1x-2x-3x-4x-5 ;
 a-1a-2a-3a4x9 ;
 a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x7 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x7 V a-1a-2a-3a-4x-1x2x-3x-6x4x-12 V a-1a-2a-3a-4x-1x-2x6x4x-12 V a-1a-2a-3a-4x-1x2x-3x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x10x-11 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x-7 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x-11 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x-7 V a-1a-2a-3a-4x1x-12 V a-1a-2a3a-4x10x11x7 V a-1a-2a3a-4x-10x-12 V a-1a-2a3a-4x10x-11 V a-1a-2a3a-4x10x11 V a-1a2a-3a4x8x7 ;
-a-1a-2a-3a-4x-1x2x-3x-6x4x-12 V a-1a-2a-3a-4x-1x-2x6x4x-12 V a-1a-2a-3a-4x-1x2x-3x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x10x-11 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x-7 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x-11 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x-7 V a-1a-2a-3a-4x1x-12 V a-1a-2a3a-4x-10x-12 V a-1a-2a3a-4x10x-11 V a-1a-2a3a-4x10x11 V a1a-2a-3a-41 ;
-a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x7 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x7 V a-1a-2a-3a-4x-1x2x-3x-6x4x-12 V a-1a-2a-3a-4x-1x-2x6x4x-12 V a-1a-2a-3a-4x-1x2x-3x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x10x-11 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x-7 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x-11 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x-7 V a-1a-2a-3a-4x1x-12 V a-1a-2a3a-4x10x11x7 V a-1a-2a3a-4x-10x-12 V a-1a-2a3a-4x10x-11 V a-1a-2a3a-4x10x11 V a-1a2a-3a4x8x7 V a1a-2a-3a-41 ;
+a-1a-2a-3a-4x-1x2x-3x-6x4x-12 V a-1a-2a-3a-4x-1x-2x6x4x-12 V a-1a-2a-3a-4x-1x2x-3x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x10x-11 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x-7 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x-11 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x-7 V a-1a-2a-3a-4x1x-12 V a-1a-2a3a-4x-10x-12 V a-1a-2a3a-4x10x-11 V a-1a-2a3a-4x10x11 V a1a-2a-3a-4 ;
+a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x7 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x7 V a-1a-2a-3a-4x-1x2x-3x-6x4x-12 V a-1a-2a-3a-4x-1x-2x6x4x-12 V a-1a-2a-3a-4x-1x2x-3x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x-10x-12 V a-1a-2a-3a-4x-1x-2x-4x5x10x-11 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x-7 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x-11 V a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x-7 V a-1a-2a-3a-4x1x-12 V a-1a-2a3a-4x10x11x7 V a-1a-2a3a-4x-10x-12 V a-1a-2a3a-4x10x-11 V a-1a-2a3a-4x10x11 V a-1a2a-3a4x8x7 V a1a-2a-3a-4 ;
 a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x7 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x7 V a-1a-2a3a-4x10x11x7 ;
 a-1a-2a-3a-4x-1x2x-3x-4x5x10x11x7 V a-1a-2a-3a-4x-1x-2x-4x5x10x11x7 V a-1a-2a3a-4x10x11x7 V a-1a2a-3a4x8x7 ;
 a-1a2a-3a-4x15x11x-13x-1x-10 V a-1a2a-3a-4x15x-11 ;
@@ -19,7 +19,7 @@ a-1a-2a-3a-4x1x12x13 V a-1a-2a-3a-4x-1x2x-3x4x-6x12x13 V a-1a-2a-3a-4x-1x-2x4x-6
 a-1a2a-3a-4x15x11x-13x1 ;
 a-1a2a-3a-4x15x11x13 ;
 a-1a-2a-3a-4x1x12x-13x-1 V a-1a-2a-3a-4x-1x2x-3x4x-6x12x-13x-1 V a-1a-2a-3a-4x-1x-2x4x-6x12x-13x-1 V a-1a-2a-3a-4x-1x2x-3x-4x5x-10x12x-13x-1 V a-1a-2a-3a-4x-1x-2x-4x5x-10x12x-13x-1 V a-1a-2a3a-4x-10x12x-13x-1 ;
-a-1a-2a-3a-4x-1x2x3 V a-1a-2a-3a-4x-1x2x-3x4x6 V a-1a-2a-3a-4x-1x-2x4x6 V a-1a-2a3a4x14 V a-1a2a3a-41 ;
+a-1a-2a-3a-4x-1x2x3 V a-1a-2a-3a-4x-1x2x-3x4x6 V a-1a-2a-3a-4x-1x-2x4x6 V a-1a-2a3a4x14 V a-1a2a3a-4 ;
 a-1a2a-3a-4x15x11x-13x-1x10 ;
-a1a-2a-3a-41 ;
+a1a-2a-3a-4 ;
 a1a-2a-3a4x15 ;

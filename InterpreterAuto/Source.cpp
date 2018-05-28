@@ -16,7 +16,7 @@ vector<vector<MultiExpression>> yExp;
 vector<vector<MultiExpression>> uExp;
 
 vector<vector<MultiExpression>> getData(string fileName);
-void tripleMatrix();
+void tripleMatrix(string stateStr, string inpStr);
 void logicExpressions();
 
 int main() {
@@ -33,16 +33,16 @@ int main() {
 
 	inputData.close();
 
-	string startData = "";
+	string startState = "";
 
 	for (int i = 0; i < COUNT_ALPHA; ++i) {
-		startData += '0';
+		startState += '0';
 	}
-	startData += startX;
+
 
 	switch (workMode) {
 	case 1:
-		tripleMatrix();
+		tripleMatrix(startState, startX);
 		break;
 	case 2:
 		logicExpressions();
@@ -75,27 +75,65 @@ vector<vector<MultiExpression>> getData(string fileName) {
 	return expressions;
 }
 // исправилть a41
-void tripleMatrix() {
+void tripleMatrix(string stateStr, string inpStr) {
 	/*
 		1) формировать начальную строку, то есть последовательность альф и иксов
 		2) формировать в правильной форме w и u, то есть привести их к стандарту (всё без пропусков, с *)
 		3) пока состояние в начальной строке не станет снова равно 0000, проходится по всем матрицам и искать какие биты меняются
 		4) проходимся по всем y, чтобы узнать какие данные выводятся.
 	*/
-	MultiExpression w[COUNT_W];
-	for (int i = 0; i < COUNT_W; ++i) {
-		w[i] = MultiExpression(COUNT_ALPHA + COUNT_X);
-	}
-	MultiExpression u[COUNT_U];
 	for (int i = 0; i < COUNT_U; ++i) {
-		u[i] = MultiExpression(COUNT_ALPHA + COUNT_X);
+		for (int j = 0; j < uExp.size(); ++j) {
+			uExp[i][j].transformToTripleMatForm();
+		}
 	}
-	MultiExpression y[COUNT_Y];
+	for (int i = 0; i < COUNT_W; ++i) {
+		for (int j = 0; j < wExp.size(); ++j) {
+			wExp[i][j].transformToTripleMatForm();
+		}
+	}
 	for (int i = 0; i < COUNT_Y; ++i) {
-		y[i] = MultiExpression(COUNT_ALPHA + COUNT_X);
+		for (int j = 0; j < yExp.size(); ++j) {
+			yExp[i][j].transformToTripleMatForm();
+		}
 	}
-
-	int a = 10;
+	MultiExpression startExp;
+	startExp.trasformByBinaryString(stateStr + inpStr);
+	do {
+		bool currentOutput[COUNT_Y] = {};
+		for (int i = 0; i < wExp.size(); ++i) {
+			for (int j = 0; j < wExp[i].size(); ++j) {
+				if (wExp[i][j] == startExp) {
+					stateStr[i] = '1';
+					break;
+				}
+			}
+		}
+		for (int i = 0; i < uExp.size(); ++i) {
+			for (int j = 0; j < uExp[i].size(); ++j) {
+				if (uExp[i][j] == startExp) {
+					stateStr[i] = '0';
+					break;
+				}
+			}
+		}
+		for (int i = 0; i < yExp.size(); ++i) {
+			for (int j = 0; j < yExp[i].size(); ++j) {
+				if (startExp == yExp[i][j]) {
+					currentOutput[i] = true;
+				}
+			}
+		}
+		cout << "From " + startExp.getStateInBin() + " to " + stateStr + "\n";
+		for (int i = 0; i < COUNT_Y; ++i) {
+			if (currentOutput[i])
+				cout << "1";
+			else
+				cout << "0";
+		}
+		cout << "\n";
+		startExp.setStateByBinStr(stateStr);
+	} while (!startExp.isZeroState());
 }
 
 void logicExpressions() {
