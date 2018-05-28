@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <math.h>
+
+#include "Expression.h"
 
 using namespace std;
 
@@ -26,13 +31,7 @@ string getU() {
 }
 
 int main() {
-	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w", stdout);
-	int interpreterCode;
-	scanf("%d", &interpreterCode);
-	string inputData;
-	cin >> inputData;
-	getU();
+
 	return 0;
 }
 /*

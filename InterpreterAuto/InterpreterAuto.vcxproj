@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Expression.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +119,9 @@
     <Text Include="u.txt" />
     <Text Include="w.txt" />
     <Text Include="y.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Expression.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
