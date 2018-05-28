@@ -111,11 +111,18 @@ ExpPart MultiExpression::operator[](int id) const
 
 bool MultiExpression::operator==(MultiExpression ex) const
 {
-	for (int i = 0; i < ex.size(); ++i) {
-		if (this->expression[i].isAnyValue || ex[i].isAnyValue) {
+	for (int i = 0, j = 0; i < expression.size() && j < ex.size(); ++j, ++i) {
+		if (expression[i].letter != ex.expression[j].letter || expression[i].number != ex.expression[j].number) {
+			if (ex.size() > expression.size())
+				i--;
+			else
+				j--;
+		}
+
+		if (expression[i].isAnyValue || ex[j].isAnyValue) {
 			continue;
 		}
-		if (!(this->expression[i] == ex[i])) {
+		if (!(expression[i] == ex[j])) {
 			return false;
 		}
 	}
