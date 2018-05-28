@@ -74,26 +74,21 @@ vector<vector<MultiExpression>> getData(string fileName) {
 	input.close();
 	return expressions;
 }
-// исправилть a41
+
 void tripleMatrix(string stateStr, string inpStr) {
-	/*
-		1) формировать начальную строку, то есть последовательность альф и иксов
-		2) формировать в правильной форме w и u, то есть привести их к стандарту (всё без пропусков, с *)
-		3) пока состояние в начальной строке не станет снова равно 0000, проходится по всем матрицам и искать какие биты меняются
-		4) проходимся по всем y, чтобы узнать какие данные выводятся.
-	*/
-	for (int i = 0; i < COUNT_U; ++i) {
-		for (int j = 0; j < uExp.size(); ++j) {
+
+	for (int i = 0; i < uExp.size(); ++i) {
+		for (int j = 0; j < uExp[i].size(); ++j) {
 			uExp[i][j].transformToTripleMatForm();
 		}
 	}
-	for (int i = 0; i < COUNT_W; ++i) {
-		for (int j = 0; j < wExp.size(); ++j) {
+	for (int i = 0; i < wExp.size(); ++i) {
+		for (int j = 0; j < wExp[i].size(); ++j) {
 			wExp[i][j].transformToTripleMatForm();
 		}
 	}
-	for (int i = 0; i < COUNT_Y; ++i) {
-		for (int j = 0; j < yExp.size(); ++j) {
+	for (int i = 0; i < yExp.size(); ++i) {
+		for (int j = 0; j < yExp[i].size(); ++j) {
 			yExp[i][j].transformToTripleMatForm();
 		}
 	}
@@ -105,7 +100,6 @@ void tripleMatrix(string stateStr, string inpStr) {
 			for (int j = 0; j < wExp[i].size(); ++j) {
 				if (wExp[i][j] == startExp) {
 					stateStr[i] = '1';
-					break;
 				}
 			}
 		}
@@ -113,7 +107,6 @@ void tripleMatrix(string stateStr, string inpStr) {
 			for (int j = 0; j < uExp[i].size(); ++j) {
 				if (uExp[i][j] == startExp) {
 					stateStr[i] = '0';
-					break;
 				}
 			}
 		}

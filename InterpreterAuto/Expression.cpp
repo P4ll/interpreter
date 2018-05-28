@@ -27,12 +27,9 @@ char ExpPart::getBinDigit()
 	return isNegative == false ? '1' : '0';
 }
 
-bool ExpPart::operator < (ExpPart &p2) const
+bool ExpPart::operator<(const ExpPart & p) const
 {
-	if (letter == p2.letter)
-		return this->number < p2.number;
-	else
-		letter < p2.letter;
+	return letter < p.letter || letter == p.letter && number < p.number;
 }
 
 bool ExpPart::operator==(ExpPart &p2) const
@@ -88,7 +85,7 @@ void MultiExpression::transformToTripleMatForm()
 	}
 	for (int i = 0; i < expression.size(); ++i) {
 		if (expression[i].letter == 'x') {
-			alphas[expression[i].number] = true;
+			xx[expression[i].number] = true;
 		}
 	}
 	for (int i = 1; i <= COUNT_ALPHA; ++i) {
@@ -139,7 +136,7 @@ void MultiExpression::trasformByBinaryString(std::string binStr)
 	}
 	for (; i < COUNT_ALPHA + COUNT_X; ++i) {
 		expression[i].letter = 'x';
-		expression[i].number = i - COUNT_ALPHA;
+		expression[i].number = i - COUNT_ALPHA + 1;
 		if (binStr[i] == '0')
 			expression[i].isNegative = true;
 		else

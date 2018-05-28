@@ -13,7 +13,7 @@ public:
 	ExpPart(char sym, int num);
 	ExpPart(char let, int num, bool isNeg);
 	char getBinDigit();
-	bool operator < (ExpPart &p2) const;
+	bool operator < (const ExpPart &p) const;
 	bool operator == (ExpPart &p2) const;
 };
 
