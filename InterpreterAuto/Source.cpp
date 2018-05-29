@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <math.h>
 #include <chrono>
+#include <set>
 #include <stdlib.h>
 
 #include "Expression.h"
@@ -20,6 +21,7 @@ vector<vector<MultiExpression>> uExp;
 vector<vector<MultiExpression>> getData(string fileName);
 void tripleMatrix(string stateStr, string inpStr);
 void logicExpressions(string stateStr, string inpStr);
+void outputYData(bool currentOutput[]);
 
 int main() {
 	ios::sync_with_stdio(0);
@@ -98,6 +100,8 @@ void tripleMatrix(string stateStr, string inpStr) {
 	}
 	MultiExpression startExp;
 	startExp.trasformByBinaryString(stateStr + inpStr);
+	set<string> prevStates;
+	prevStates.insert(stateStr);
 	do {
 		bool currentOutput[COUNT_Y] = {};
 		for (int i = 0; i < wExp.size(); ++i) {
@@ -122,17 +126,13 @@ void tripleMatrix(string stateStr, string inpStr) {
 			}
 		}
 		cout << "From " + startExp.getStateInBin() + " to " + stateStr + "\n";
-		if (startExp.getStateInBin() == stateStr) {
+		outputYData(currentOutput);
+		if (!prevStates.count(stateStr))
+			prevStates.insert(stateStr);
+		else {
 			cout << "crash" << endl;
 			break;
 		}
-		for (int i = 0; i < COUNT_Y; ++i) {
-			if (currentOutput[i])
-				cout << "1";
-			else
-				cout << "0";
-		}
-		cout << "\n";
 		startExp.setStateByBinStr(stateStr);
 	} while (!startExp.isZeroState());
 }
@@ -145,4 +145,20 @@ void logicExpressions(string stateStr, string inpStr) {
 		4) выводим
 	*/
 
+}
+
+void outputYData(bool currentOutput[]) {
+	vector<int> a;
+	for (int i = 0; i < COUNT_Y; ++i) {
+		if (currentOutput[i])
+			cout << "1", a.push_back(i + 1);
+		else
+			cout << "0";
+	}
+	cout << " = ";
+	for (int i = 0; i < a.size(); ++i) {
+		cout << a[i];
+		if (i + 1 < a.size()) cout << ", ";
+	}
+	cout << "\n";
 }
