@@ -1,1 +1,1 @@
-x-1x2x-3x-4x-5x9x-10x-12x13x15x11
+a-1a-2a-3a-4x1x12x-13x-1 V a-1a-2a-3a-4x-1x2x-3x4x-6x12x-13x-1 V a-1a-2a-3a-4x-1x-2x4x-6x12x-13x-1 V a-1a-2a-3a-4x-1x2x-3x-4x5x-10x12x-13x-1 V a-1a-2a-3a-4x-1x-2x-4x5x-10x12x-13x-1 V a-1a-2a-3a-4x-1x2x3 V a-1a-2a-3a-4x-1x2x-3x4x6 V a-1a-2a-3a-4x-1x-2x4x6 V a-1a-2a3a-4x-10x12x-13x-1 V a-1a-2a3a4x14 V a-1a2a3a-4 ;

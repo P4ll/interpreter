@@ -7,13 +7,15 @@ using namespace std;
 
 const int COUNT_X = 15;
 
+string genBinLine(string data);
+void addToPrevTest();
+
 int main() {
 	ios::sync_with_stdio(0);
-	ifstream inp("input.txt");
-	string data;
-	inp >> data;
-	inp.close();
-	
+	return 0;
+}
+
+string genBinLine(string data) {
 	string output;
 
 	output.resize(COUNT_X);
@@ -36,9 +38,34 @@ int main() {
 		else
 			++i;
 	}
+	return output;
+}
+
+void addToPrevTest() {
+	ifstream inp("input.txt");
+	string data;
+	inp >> data;
+	inp.close();
+	string output = genBinLine(data);
 	cout << output;
 	ofstream out("prevTests.txt", ios_base::app);
 	out << output << "\n";
 	out.close();
-	return 0;
+}
+
+void toTripleMatrix() {
+	ifstream inp("input.txt");
+	ofstream out("output.txt");
+	
+	string t = "";
+	string output = "";
+	while (inp >> t && !inp.eof()) {
+		if (t == "V")
+			continue;
+		output += genBinLine(t);
+		output += '\n';
+	}
+	out << output;
+	inp.close();
+	out.close();
 }
