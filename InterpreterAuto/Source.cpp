@@ -5,6 +5,8 @@
 #include <string>
 #include <algorithm>
 #include <math.h>
+#include <chrono>
+#include <stdlib.h>
 
 #include "Expression.h"
 #include "Settings.h"
@@ -17,7 +19,7 @@ vector<vector<MultiExpression>> uExp;
 
 vector<vector<MultiExpression>> getData(string fileName);
 void tripleMatrix(string stateStr, string inpStr);
-void logicExpressions();
+void logicExpressions(string stateStr, string inpStr);
 
 int main() {
 	ios::sync_with_stdio(0);
@@ -39,19 +41,21 @@ int main() {
 		startState += '0';
 	}
 
-
+	chrono::high_resolution_clock::time_point begTime = chrono::high_resolution_clock::now();
 	switch (workMode) {
 	case 1:
 		tripleMatrix(startState, startX);
 		break;
 	case 2:
-		logicExpressions();
+		logicExpressions(startState, startX);
 		break;
 	default:
 		cout << "Wrong type";
 		break;
 	}
-
+	chrono::high_resolution_clock::time_point endTime = chrono::high_resolution_clock::now();
+	chrono::duration<double >elapsedTime = chrono::duration_cast< chrono::duration<double> >(endTime - begTime);
+	cout << "Time: " << elapsedTime.count();
 	return 0;
 }
 
@@ -118,6 +122,10 @@ void tripleMatrix(string stateStr, string inpStr) {
 			}
 		}
 		cout << "From " + startExp.getStateInBin() + " to " + stateStr + "\n";
+		if (startExp.getStateInBin() == stateStr) {
+			cout << "crash" << endl;
+			break;
+		}
 		for (int i = 0; i < COUNT_Y; ++i) {
 			if (currentOutput[i])
 				cout << "1";
@@ -129,11 +137,12 @@ void tripleMatrix(string stateStr, string inpStr) {
 	} while (!startExp.isZeroState());
 }
 
-void logicExpressions() {
+void logicExpressions(string stateStr, string inpStr) {
 	/*
 		1) держим строку из 1 и 0
 		2) пока состояние на 0000 пробегаемся по всем w и u, вычисляя выражение, потом меняем состояние как надо
 		3) тоже самое для y
 		4) выводим
 	*/
+
 }
