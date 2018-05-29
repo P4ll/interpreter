@@ -33,4 +33,5 @@ public:
 	bool isZeroState() const;
 	void setStateByBinStr(std::string str);
 	std::string getStateInBin();
+	bool calculateByBinStr(std::string str);
 };

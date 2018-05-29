@@ -181,3 +181,16 @@ std::string MultiExpression::getStateInBin()
 	}
 	return out;
 }
+
+bool MultiExpression::calculateByBinStr(std::string str)
+{
+	for (int i = 0; i < expression.size(); ++i) {
+		int bitPos = expression[i].number - 1;
+		if (expression[i].letter == 'x')
+			bitPos += COUNT_ALPHA;
+		bool bitVal = str[bitPos] == '1' ? 1 : 0;
+		if (!expression[i].isNegative != bitVal)
+			return 0;
+	}
+	return 1;
+}

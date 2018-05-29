@@ -127,24 +127,64 @@ void tripleMatrix(string stateStr, string inpStr) {
 		}
 		cout << "From " + startExp.getStateInBin() + " to " + stateStr + "\n";
 		outputYData(currentOutput);
+		bool testCrash = false;
 		if (!prevStates.count(stateStr))
 			prevStates.insert(stateStr);
 		else {
-			cout << "crash" << endl;
-			break;
+			testCrash = 1;
 		}
 		startExp.setStateByBinStr(stateStr);
+		if (!startExp.isZeroState() && testCrash) {
+			cout << "crash\n";
+			break;
+		}
 	} while (!startExp.isZeroState());
 }
 
 void logicExpressions(string stateStr, string inpStr) {
-	/*
-		1) держим строку из 1 и 0
-		2) пока состояние на 0000 пробегаемся по всем w и u, вычисляя выражение, потом меняем состояние как надо
-		3) тоже самое для y
-		4) выводим
-	*/
-
+	string endState = stateStr;
+	string startStr = stateStr + inpStr;
+	set<string> prevStates;
+	prevStates.insert(stateStr);
+	do {
+		bool currentOutput[COUNT_Y] = {};
+		for (int i = 0; i < wExp.size(); ++i) {
+			for (int j = 0; j < wExp[i].size(); ++j) {
+				if (wExp[i][j].calculateByBinStr(startStr)) {
+					stateStr[i] = '1';
+					break;
+				}
+			}
+		}
+		for (int i = 0; i < uExp.size(); ++i) {
+			for (int j = 0; j < uExp[i].size(); ++j) {
+				if (uExp[i][j].calculateByBinStr(startStr)) {
+					stateStr[i] = '0';
+					break;
+				}
+			}
+		}
+		for (int i = 0; i < yExp.size(); ++i) {
+			for (int j = 0; j < yExp[i].size(); ++j) {
+				if (yExp[i][j].calculateByBinStr(startStr)) {
+					currentOutput[i] = true;
+				}
+			}
+		}
+		outputYData(currentOutput);
+		for (int i = 0; i < stateStr.size(); ++i) {
+			startStr[i] = stateStr[i];
+		}
+		bool crash = 0;
+		if (!prevStates.count(stateStr))
+			prevStates.insert(stateStr);
+		else
+			crash = 1;
+		if (crash && stateStr != endState) {
+			cout << "crash\n";
+			break;
+		}
+	} while (stateStr != endState);
 }
 
 void outputYData(bool currentOutput[]) {
