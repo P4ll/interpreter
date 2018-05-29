@@ -148,6 +148,7 @@ void logicExpressions(string stateStr, string inpStr) {
 	prevStates.insert(stateStr);
 	do {
 		bool currentOutput[COUNT_Y] = {};
+		cout << "From " + stateStr + " to ";
 		for (int i = 0; i < wExp.size(); ++i) {
 			for (int j = 0; j < wExp[i].size(); ++j) {
 				if (wExp[i][j].calculateByBinStr(startStr)) {
@@ -171,6 +172,7 @@ void logicExpressions(string stateStr, string inpStr) {
 				}
 			}
 		}
+		cout << stateStr << endl;
 		outputYData(currentOutput);
 		for (int i = 0; i < stateStr.size(); ++i) {
 			startStr[i] = stateStr[i];
