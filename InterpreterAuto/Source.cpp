@@ -60,8 +60,8 @@ int main() {
 	yExp = getData("y.txt");
 	uExp = getData("u.txt");
 
-	//normalMode();
-	testMode2();
+	normalMode();
+	//testMode2();
 	return 0;
 }
 
