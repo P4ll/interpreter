@@ -57,7 +57,7 @@ int main() {
 	}
 	chrono::high_resolution_clock::time_point endTime = chrono::high_resolution_clock::now();
 	chrono::duration<double >elapsedTime = chrono::duration_cast< chrono::duration<double> >(endTime - begTime);
-	cout << "Time: " << elapsedTime.count();
+	cout << "Time: " << elapsedTime.count() << " sec";
 	return 0;
 }
 
@@ -102,6 +102,7 @@ void tripleMatrix(string stateStr, string inpStr) {
 	startExp.trasformByBinaryString(stateStr + inpStr);
 	set<string> prevStates;
 	prevStates.insert(stateStr);
+	int countMoves = 0;
 	do {
 		bool currentOutput[COUNT_Y] = {};
 		for (int i = 0; i < wExp.size(); ++i) {
@@ -138,7 +139,9 @@ void tripleMatrix(string stateStr, string inpStr) {
 			cout << "crash\n";
 			break;
 		}
+		++countMoves;
 	} while (!startExp.isZeroState());
+	cout << "Count states: " << countMoves << endl;
 }
 
 void logicExpressions(string stateStr, string inpStr) {
@@ -146,6 +149,7 @@ void logicExpressions(string stateStr, string inpStr) {
 	string startStr = stateStr + inpStr;
 	set<string> prevStates;
 	prevStates.insert(stateStr);
+	int countMoves = 0;
 	do {
 		bool currentOutput[COUNT_Y] = {};
 		cout << "From " + stateStr + " to ";
@@ -186,7 +190,9 @@ void logicExpressions(string stateStr, string inpStr) {
 			cout << "crash\n";
 			break;
 		}
+		++countMoves;
 	} while (stateStr != endState);
+	cout << "Count states: " << countMoves << endl;
 }
 
 void outputYData(bool currentOutput[]) {

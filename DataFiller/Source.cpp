@@ -31,7 +31,7 @@ string replaceAlpha(string a) {
 	for (int i = 0; i < a.size(); i++) {
 		string alp = "a" + to_string(i + 1);
 		if (a[i] == '0')
-			out += "-" + alp;
+			out += alp + "-";
 		else
 			out += alp;
 	}
