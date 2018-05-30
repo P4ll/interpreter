@@ -115,7 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="badResults.txt" />
+    <Text Include="badResultsLogEx.txt" />
     <Text Include="goodResults.txt" />
+    <Text Include="goodResultsLogEx.txt" />
     <Text Include="input.txt" />
     <Text Include="output.txt" />
     <Text Include="table.txt" />

@@ -114,17 +114,28 @@ void testMode() {
 }
 
 void testMode2() {
-	int type = 1;
+	int type = 2;
 	if (type == 1)
 		trasformAllDataForTrMatrix();
-	ofstream badRes("badResults.txt", ios_base::app);
-	ofstream goodRes("goodResults.txt", ios_base::app);
+	ofstream badRes("badResultsLogEx.txt", ios_base::app);
+	ofstream goodRes("goodResultsLogEx.txt", ios_base::app);
 	bitset<COUNT_X> xValue;
 	int targetValue = 1 << (COUNT_X + 1) - 1;
 	int currentValue = 0;
 	string startState = getStartStateInBinStr();
 	while (currentValue != targetValue) {
-		pair<string, bool> badTest = getTripleMatrixAns(startState, xValue.to_string());
+		pair<string, bool> badTest;
+		switch (type) {
+		case 1:
+			badTest = getTripleMatrixAns(startState, xValue.to_string());
+			break;
+		case 2:
+			badTest = getLogicExpressionsAns(startState, xValue.to_string());
+			break;
+		default:
+			cout << "Wrong number";
+			break;
+		}
 		if (badTest.second) {
 			badRes << xValue << endl;
 			badRes << badTest.first << "\n";
@@ -222,10 +233,10 @@ pair<string, bool> getTripleMatrixAns(string stateStr, string inpStr) {
 			testCrash = 1;
 		}
 		startExp.setStateByBinStr(stateStr);
-		if (!startExp.isZeroState() && testCrash) {
+		if (!startExp.isZeroState() && testCrash || testCrash && prevStates.size() == 1) {
 			return make_pair(outputData, 1);
-			cout << "crash\n";
-			break;
+			//cout << "crash\n";
+			//break;
 		}
 		++countMoves;
 	} while (!startExp.isZeroState());
@@ -282,7 +293,7 @@ pair<string, bool> getLogicExpressionsAns(string stateStr, string inpStr) {
 			prevStates.insert(stateStr);
 		else
 			crash = 1;
-		if (crash && stateStr != endState) {
+		if (crash && stateStr != endState || crash && prevStates.size() == 1) {
 			return make_pair(outputData, 1);
 			//break;
 		}

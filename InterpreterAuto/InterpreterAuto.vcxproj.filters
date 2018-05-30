@@ -47,6 +47,12 @@
     <Text Include="badResults.txt">
       <Filter>Файлы исходного кода</Filter>
     </Text>
+    <Text Include="badResultsLogEx.txt">
+      <Filter>Файлы исходного кода</Filter>
+    </Text>
+    <Text Include="goodResultsLogEx.txt">
+      <Filter>Файлы исходного кода</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Expression.h">
