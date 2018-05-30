@@ -114,8 +114,11 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="badResults.txt" />
+    <Text Include="goodResults.txt" />
     <Text Include="input.txt" />
     <Text Include="output.txt" />
+    <Text Include="table.txt" />
     <Text Include="u.txt" />
     <Text Include="w.txt" />
     <Text Include="y.txt" />

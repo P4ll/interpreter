@@ -7,6 +7,7 @@
 #include <math.h>
 #include <chrono>
 #include <set>
+#include <bitset>
 #include <stdlib.h>
 
 #include "Expression.h"
@@ -20,8 +21,38 @@ vector<vector<MultiExpression>> uExp;
 
 vector<vector<MultiExpression>> getData(string fileName);
 void tripleMatrix(string stateStr, string inpStr);
+pair<string, bool> getTripleMatrixAns(string stateStr, string inpStr);
 void logicExpressions(string stateStr, string inpStr);
-void outputYData(bool currentOutput[]);
+pair<string, bool> getLogicExpressionsAns(string stateStr, string inpStr);
+string outputYData(bool currentOutput[]);
+void normalMode();
+void testMode();
+void testMode2();
+void trasformAllDataForTrMatrix();
+string getStartStateInBinStr();
+
+struct TestTable {
+	string strs[COUNT_COLS_TEST_TABLE];
+
+	bool operator<(const TestTable &t) const {
+		for (int i = 0; i < COUNT_COLS_TEST_TABLE; ++i) {
+			if (strs[i] == t.strs[i])
+				continue;
+			if (strs[i] < t.strs[i])
+				return true;
+			else
+				return false;
+		}
+	}
+
+	bool operator==(const TestTable &t) const {
+		for (int i = 0; i < COUNT_COLS_TEST_TABLE; ++i) {
+			if (strs[i] != t.strs[i])
+				return false;
+		}
+		return true;
+	}
+};
 
 int main() {
 	ios::sync_with_stdio(0);
@@ -29,6 +60,12 @@ int main() {
 	yExp = getData("y.txt");
 	uExp = getData("u.txt");
 
+	//normalMode();
+	testMode2();
+	return 0;
+}
+
+void normalMode() {
 	ifstream inputData("input.txt");
 	int workMode;
 	string startX;
@@ -37,15 +74,12 @@ int main() {
 
 	inputData.close();
 
-	string startState = "";
-
-	for (int i = 0; i < COUNT_ALPHA; ++i) {
-		startState += '0';
-	}
+	string startState = getStartStateInBinStr();
 
 	chrono::high_resolution_clock::time_point begTime = chrono::high_resolution_clock::now();
 	switch (workMode) {
 	case 1:
+		trasformAllDataForTrMatrix();
 		tripleMatrix(startState, startX);
 		break;
 	case 2:
@@ -58,7 +92,54 @@ int main() {
 	chrono::high_resolution_clock::time_point endTime = chrono::high_resolution_clock::now();
 	chrono::duration<double >elapsedTime = chrono::duration_cast< chrono::duration<double> >(endTime - begTime);
 	cout << "Time: " << elapsedTime.count() << " sec";
-	return 0;
+}
+
+void testMode() {
+	set<TestTable> testTable;
+	ifstream inpTable("table.txt");
+	while (!inpTable.eof()) {
+		TestTable t;
+		for (int i = 0; i < COUNT_COLS_TEST_TABLE && cin >> t.strs[i]; ++i);
+		testTable.insert(t);
+	}
+	inpTable.close();
+	bitset<COUNT_X> xValue;
+	int targetValue = 1 << (COUNT_X + 1) - 1;
+	int currentValue = 0;
+	while (currentValue != targetValue) {
+		// запуск с этим получаем строки
+		++currentValue;
+		xValue = currentValue;
+	}
+}
+
+void testMode2() {
+	int type = 1;
+	if (type == 1)
+		trasformAllDataForTrMatrix();
+	ofstream badRes("badResults.txt", ios_base::app);
+	ofstream goodRes("goodResults.txt", ios_base::app);
+	bitset<COUNT_X> xValue;
+	int targetValue = 1 << (COUNT_X + 1) - 1;
+	int currentValue = 0;
+	string startState = getStartStateInBinStr();
+	while (currentValue != targetValue) {
+		pair<string, bool> badTest = getTripleMatrixAns(startState, xValue.to_string());
+		if (badTest.second) {
+			badRes << xValue << endl;
+			badRes << badTest.first << "\n";
+		}
+		else {
+			goodRes << xValue << endl;
+			goodRes << badTest.first << "\n";
+		}
+		if (currentValue % 1000 == 0)
+			cout << currentValue << endl;
+		++currentValue;
+		xValue = currentValue;
+	}
+	badRes.close();
+	goodRes.close();
 }
 
 vector<vector<MultiExpression>> getData(string fileName) {
@@ -81,8 +162,7 @@ vector<vector<MultiExpression>> getData(string fileName) {
 	return expressions;
 }
 
-void tripleMatrix(string stateStr, string inpStr) {
-
+void trasformAllDataForTrMatrix() {
 	for (int i = 0; i < uExp.size(); ++i) {
 		for (int j = 0; j < uExp[i].size(); ++j) {
 			uExp[i][j].transformToTripleMatForm();
@@ -98,6 +178,10 @@ void tripleMatrix(string stateStr, string inpStr) {
 			yExp[i][j].transformToTripleMatForm();
 		}
 	}
+}
+
+pair<string, bool> getTripleMatrixAns(string stateStr, string inpStr) {
+	string outputData = "";
 	MultiExpression startExp;
 	startExp.trasformByBinaryString(stateStr + inpStr);
 	set<string> prevStates;
@@ -109,6 +193,7 @@ void tripleMatrix(string stateStr, string inpStr) {
 			for (int j = 0; j < wExp[i].size(); ++j) {
 				if (wExp[i][j] == startExp) {
 					stateStr[i] = '1';
+					break;
 				}
 			}
 		}
@@ -116,6 +201,7 @@ void tripleMatrix(string stateStr, string inpStr) {
 			for (int j = 0; j < uExp[i].size(); ++j) {
 				if (uExp[i][j] == startExp) {
 					stateStr[i] = '0';
+					break;
 				}
 			}
 		}
@@ -123,11 +209,12 @@ void tripleMatrix(string stateStr, string inpStr) {
 			for (int j = 0; j < yExp[i].size(); ++j) {
 				if (startExp == yExp[i][j]) {
 					currentOutput[i] = true;
+					break;
 				}
 			}
 		}
-		cout << "From " + startExp.getStateInBin() + " to " + stateStr + "\n";
-		outputYData(currentOutput);
+		outputData += "From " + startExp.getStateInBin() + " to " + stateStr + "\n";
+		outputData += outputYData(currentOutput);
 		bool testCrash = false;
 		if (!prevStates.count(stateStr))
 			prevStates.insert(stateStr);
@@ -136,15 +223,25 @@ void tripleMatrix(string stateStr, string inpStr) {
 		}
 		startExp.setStateByBinStr(stateStr);
 		if (!startExp.isZeroState() && testCrash) {
+			return make_pair(outputData, 1);
 			cout << "crash\n";
 			break;
 		}
 		++countMoves;
 	} while (!startExp.isZeroState());
-	cout << "Count states: " << countMoves << endl;
+	outputData += "Count states: " + to_string(countMoves) + "\n";
+	return make_pair(outputData, 0);
 }
 
-void logicExpressions(string stateStr, string inpStr) {
+void tripleMatrix(string stateStr, string inpStr) {
+	pair<string, bool> t = getTripleMatrixAns(stateStr, inpStr);
+	cout << t.first;
+	if (t.second)
+		cout << "crash" << endl;
+}
+
+pair<string, bool> getLogicExpressionsAns(string stateStr, string inpStr) {
+	string outputData = "";
 	string endState = stateStr;
 	string startStr = stateStr + inpStr;
 	set<string> prevStates;
@@ -152,7 +249,7 @@ void logicExpressions(string stateStr, string inpStr) {
 	int countMoves = 0;
 	do {
 		bool currentOutput[COUNT_Y] = {};
-		cout << "From " + stateStr + " to ";
+		outputData += "From " + stateStr + " to ";
 		for (int i = 0; i < wExp.size(); ++i) {
 			for (int j = 0; j < wExp[i].size(); ++j) {
 				if (wExp[i][j].calculateByBinStr(startStr)) {
@@ -176,8 +273,7 @@ void logicExpressions(string stateStr, string inpStr) {
 				}
 			}
 		}
-		cout << stateStr << endl;
-		outputYData(currentOutput);
+		outputData += stateStr + "\n" + outputYData(currentOutput);
 		for (int i = 0; i < stateStr.size(); ++i) {
 			startStr[i] = stateStr[i];
 		}
@@ -187,26 +283,44 @@ void logicExpressions(string stateStr, string inpStr) {
 		else
 			crash = 1;
 		if (crash && stateStr != endState) {
-			cout << "crash\n";
-			break;
+			return make_pair(outputData, 1);
+			//break;
 		}
 		++countMoves;
 	} while (stateStr != endState);
-	cout << "Count states: " << countMoves << endl;
+	outputData += "Count states: " + to_string(countMoves) + "\n";
+	return make_pair(outputData, 0);
 }
 
-void outputYData(bool currentOutput[]) {
+void logicExpressions(string stateStr, string inpStr) {
+	pair<string, bool> t = getLogicExpressionsAns(stateStr, inpStr);
+	cout << t.first;
+	if (t.second)
+		cout << "crash" << endl;
+}
+
+string outputYData(bool currentOutput[]) {
+	string outputData = "";
 	vector<int> a;
 	for (int i = 0; i < COUNT_Y; ++i) {
 		if (currentOutput[i])
-			cout << "1", a.push_back(i + 1);
+			outputData += "1", a.push_back(i + 1);
 		else
-			cout << "0";
+			outputData += "0";
 	}
-	cout << " = ";
+	outputData += " = ";
 	for (int i = 0; i < a.size(); ++i) {
-		cout << a[i];
-		if (i + 1 < a.size()) cout << ", ";
+		outputData += to_string(a[i]);
+		if (i + 1 < a.size()) outputData += ", ";
 	}
-	cout << "\n";
+	outputData += "\n";
+	return outputData;
+}
+string getStartStateInBinStr() {
+	string startState = "";
+
+	for (int i = 0; i < COUNT_ALPHA; ++i) {
+		startState += '0';
+	}
+	return startState;
 }

@@ -38,6 +38,15 @@
     <Text Include="u.txt">
       <Filter>Файлы исходного кода</Filter>
     </Text>
+    <Text Include="table.txt">
+      <Filter>Файлы исходного кода</Filter>
+    </Text>
+    <Text Include="goodResults.txt">
+      <Filter>Файлы исходного кода</Filter>
+    </Text>
+    <Text Include="badResults.txt">
+      <Filter>Файлы исходного кода</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Expression.h">
